@@ -104,13 +104,22 @@ public class Reflector {
         return toMap(object, keyMapping, predicate, false);
     }
 
-    public static Map<String, Object> toMap(Object object, Map<String, String> keyMapping, java.util.function.Predicate<String> predicate, boolean reverse) {
+    /**
+     * 将对象通过一系列复杂操作转换成Map
+     *
+     * @param object       对象
+     * @param keyMapping   键映射
+     * @param keyPredicate 键过滤器
+     * @param reverse      过滤器反转开关
+     * @return
+     */
+    public static Map<String, Object> toMap(Object object, Map<String, String> keyMapping, java.util.function.Predicate<String> keyPredicate, boolean reverse) {
         return Arrays.stream(object.getClass().getDeclaredFields())
                 .parallel()
                 .filter(AccessibleObject::trySetAccessible)
                 .map(field -> Functions.tryOrElse(() -> new AbstractMap.SimpleEntry<>(keyMapping.getOrDefault(field.getName(), field.getName()), Objects.requireNonNullElse(field.get(object), "")), null))
                 .filter(Objects::nonNull)
-                .filter(entry -> predicate.test(entry.getKey()) != reverse)
+                .filter(entry -> keyPredicate.test(entry.getKey()) != reverse)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 }
