@@ -1,4 +1,4 @@
-package cc.ejyf.jfly;
+package cc.ejyf.jfly.random;
 
 
 import java.util.Random;
