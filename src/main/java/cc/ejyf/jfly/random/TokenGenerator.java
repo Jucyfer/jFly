@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Generator {
+public class TokenGenerator {
     private final static String AIUEO = "0M9N8B7V6C5X4Z3A2S1DQFWGEHRJTKYLUPIOqpwoeirutyalskdjfhgmznxbcv";
 
     /**
