@@ -29,4 +29,26 @@ public class TokenGenerator {
                     return sb.toString();
                 }).collect(Collectors.joining("-"));
     }
+
+    /**
+     * 生成token
+     *
+     * @param blockCount  2~100
+     * @param blockLength
+     * @return
+     */
+    public static String generateToken(int blockCount, int blockLength, CharSequence delimiter) {
+        Random rand = new Random(System.nanoTime());
+        return IntStream.rangeClosed(0, blockCount)
+                .parallel()
+                .unordered()
+                .limit(Math.min(Math.max(blockCount, 2), 100))
+                .mapToObj(s -> {
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < blockLength; i++) {
+                        sb.append(AIUEO.charAt(rand.nextInt(AIUEO.length())));
+                    }
+                    return sb.toString();
+                }).collect(Collectors.joining("-"));
+    }
 }
