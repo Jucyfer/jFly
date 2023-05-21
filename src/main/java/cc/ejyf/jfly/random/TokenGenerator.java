@@ -49,6 +49,6 @@ public class TokenGenerator {
                         sb.append(AIUEO.charAt(rand.nextInt(AIUEO.length())));
                     }
                     return sb.toString();
-                }).collect(Collectors.joining("-"));
+                }).collect(Collectors.joining(delimiter));
     }
 }
