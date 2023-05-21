@@ -1,4 +1,4 @@
 /target/
 /.idea/
-/src/test/
+!/src/test/
 /jfly.iml

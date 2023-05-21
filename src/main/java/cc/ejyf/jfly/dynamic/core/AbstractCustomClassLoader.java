@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public abstract class AbstractCustomClassLoader extends ClassLoader {
+    public static final AbstractCustomClassLoader DEFAULT_NOT_SUPPORTED = new AbstractCustomClassLoader() {
+        @Override
+        protected byte[] findClassBytes(String classFullName) {
+            throw new UnsupportedOperationException("不支持的寻类方法");
+        }
+    };
+
     public AbstractCustomClassLoader(ClassLoader parent) {
         super(parent);
     }

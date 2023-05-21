@@ -7,8 +7,8 @@ import java.net.URI;
 public class SourceCodeHolder extends SimpleJavaFileObject {
     private String code;
 
-    protected SourceCodeHolder(String name, String code) {
-        super(URI.create("string:///" + name.replace('.', '/') + ".java"), Kind.SOURCE);
+    public SourceCodeHolder(String javaFullClassName, String code) {
+        super(URI.create("string:///" + javaFullClassName.replace('.', '/') + ".java"), Kind.SOURCE);
         this.code = code;
     }
 
